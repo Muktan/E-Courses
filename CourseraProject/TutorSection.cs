@@ -12,14 +12,17 @@ namespace CourseraProject
 {
     public partial class TutorSection : Form
     {
-        public TutorSection()
+        string UserId;
+        public TutorSection(string UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
         
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+
             UploadForm f2 = new UploadForm();
             f2.ShowDialog();
         }

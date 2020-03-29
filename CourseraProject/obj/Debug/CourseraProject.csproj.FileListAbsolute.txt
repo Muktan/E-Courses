@@ -88,3 +88,5 @@ D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\Cour
 D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.csproj.CoreCompileInputs.cache
 D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.exe
 D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.pdb
+D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.Login.resources
+D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.Register.resources

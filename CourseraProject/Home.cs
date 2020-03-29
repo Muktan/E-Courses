@@ -21,8 +21,9 @@ namespace CourseraProject
 
 
 
-        public Home()
+        public Home(String UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
@@ -175,11 +176,11 @@ namespace CourseraProject
             SqlCommand cmd = new SqlCommand("SELECT * FROM Courses", con);
             if (type == "AUDITED")
             {
-                cmd = new SqlCommand("SELECT * FROM Courses,UserHistoryProgress where CourseId = Courses.Id and UserId = 1 and isAudited = 1", con);
+                cmd = new SqlCommand("SELECT * FROM Courses,UserHistoryProgress where CourseId = Courses.Id and UserId = '"+this.UserId+"' and isAudited = 1", con);
             }
             else if (type == "PURCHASED")
             {
-                cmd = new SqlCommand("SELECT * FROM Courses,UserHistoryProgress where CourseId = Courses.Id and UserId = 1 and PaymentId IS NOT NULL;", con);
+                cmd = new SqlCommand("SELECT * FROM Courses,UserHistoryProgress where CourseId = Courses.Id and UserId = '" + this.UserId + "' and PaymentId IS NOT NULL;", con);
             }
             con.Open();
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -242,7 +243,7 @@ namespace CourseraProject
 
         private void button5_Click(object sender, EventArgs e)
         {
-            TutorSection ts = new TutorSection();
+            TutorSection ts = new TutorSection(UserId);
             ts.Show();
         }
     }
