@@ -90,7 +90,7 @@ namespace CourseraProject
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string path = @"D:\0_Drive_E\SEM-6\OOSE\CourseraProject\CourseraProject\Resources\" + Id.ToString();
+            string path = @"D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\Resources\" + Id.ToString();
             //string path = @"D:\0_Drive_E\SEM-6\OOSE\CourseraProject\CourseraProject\Resources";
             OpenFileDialog op1 = new OpenFileDialog();
             if (comboBox1.SelectedIndex == 0) {

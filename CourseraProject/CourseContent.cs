@@ -49,7 +49,7 @@ namespace CourseraProject
             int x = 20;
             int y = 50;
             string init;
-            init = "D:\\0_Drive_E\\SEM-6\\OOSE\\CourseraProject\\CourseraProject\\Resources";
+            init = @"D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\Resources";
             foreach (var item in arr)
             {
                 try
