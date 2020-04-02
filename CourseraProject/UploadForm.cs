@@ -26,40 +26,14 @@ namespace CourseraProject
             int price = int.Parse(textBox3.Text);
             string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True";
             int Id = 0;
-            string query1 = "select max(Id) from Courses;";
-            SqlConnection con = new SqlConnection(constring);
-            SqlCommand cmd1 = new SqlCommand(query1, con);
-            try
-            {
-                con.Open();
-                Id = (int)cmd1.ExecuteScalar() + 1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "okokok");
-            }
+            Id = Course.getMaxId();
             string asd = DateTime.Now.ToString("MM-dd-yyyy");
-
-            string query = "insert into Courses(Id,CourseName,CourseDescription,OrganisationId,UploadDate,Sales,Price) values('" + Id + "','" + cname + "','" + desc + "','" + (orgid + 1) + "','" + asd + "',0,'" + price + "');";
-            SqlCommand cmd = new SqlCommand(query, con);
-            //SqlDataReader myReader;
-            try
-            {
-                //con.Open();
-                int i = cmd.ExecuteNonQuery();
-                //myReader = cmd.ExecuteReader();
-                //Console.WriteLine(i);
-                //MessageBox.Show("Saved");
-                string path = @"D:\0_Drive_E\SEM-6\OOSE\WindowsFormsApp1\WindowsFormsApp1\Courses\" + Id.ToString();
-                System.IO.Directory.CreateDirectory(path);
-                this.Hide();
-                UploadContent up = new UploadContent(Id);
-                up.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            Course.InsertCourseEntry((Id+1), cname, desc, (orgid + 1), asd, 0, price);
+            this.Hide();
+            UploadContent up = new UploadContent(Id);
+            string path = @"D:\0_Drive_E\SEM-6\OOSE\WindowsFormsApp1\WindowsFormsApp1\Courses\" + Id.ToString();
+            System.IO.Directory.CreateDirectory(path);
+            up.ShowDialog();
         }
     }
 }

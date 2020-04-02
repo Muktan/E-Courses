@@ -13,37 +13,35 @@ namespace CourseraProject
 {
     public partial class CourseDescription : System.Windows.Forms.Form
     {
-        string SelectedCourse;
+        string SelectedCourseName;
         string UserId;
         string CourseId;
-
-        public CourseDescription(string UserId,string CourseId,string theValue,string Tutors,string Desc,string Org,string Rating,string Price)
+        User CurrentUser;
+        Course SelectedCourse;
+        public CourseDescription(User CurrentUser,Course SelectedCourse)
         {
 
             InitializeComponent();
-            this.UserId = UserId;
-            this.CourseId = CourseId;
-            label1.Text = theValue;
-            SelectedCourse = theValue;
-            label2.Text += Tutors;
-            label3.Text += Desc;
-            label4.Text += Org;
-            label5.Text += Rating;
-            label6.Text += Price;
-
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-            connection.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM UserHistoryProgress where CourseId = '" + CourseId + "' and UserId = '" + UserId + "'",connection);
-            SqlDataReader dataReader = command.ExecuteReader();
-            if (dataReader.HasRows)
+            this.UserId = CurrentUser.Id;
+            this.CourseId = SelectedCourse.Id.ToString();
+            label1.Text = SelectedCourse.CourseName;
+            SelectedCourseName = SelectedCourse.CourseName;
+            label2.Text += SelectedCourse.Tutors;
+            label3.Text += SelectedCourse.CourseDescription;
+            label4.Text += SelectedCourse.OfferedBy;
+            label5.Text += SelectedCourse.Rating;
+            label6.Text += SelectedCourse.Price;
+            this.CurrentUser = CurrentUser;
+            this.SelectedCourse = SelectedCourse;
+            bool UserAdoptedSelectedCourse = ((Student)CurrentUser).hasUserAdoptedSelectedCourse(SelectedCourse);
+            bool Audited = ((Student)CurrentUser).isAudited(SelectedCourse);
+            if (UserAdoptedSelectedCourse)
             {
                 button3.Enabled = true;
-                dataReader.Read();
-                if (dataReader["isAudited"].ToString() == "0")
+                if (Audited)
                 {
                     button2.Text = "Purchased";
                     button2.Enabled = false;
-                    //if already purchased no need to audit
                     button1.Text = "Audit course";
                     button1.Enabled = false;
                 }
@@ -57,8 +55,6 @@ namespace CourseraProject
             {
                 button3.Enabled = false;
             }
-            command.Dispose();
-            connection.Close();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -74,59 +70,33 @@ namespace CourseraProject
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
-            
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("SELECT * FROM UserHistoryProgress where CourseId = '" + CourseId + "' and UserId = '" + UserId + "'", con);
-            con.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
-
-            if (dataReader.HasRows)
+            bool UserAdoptedSelectedCourse = ((Student)this.CurrentUser).hasUserAdoptedSelectedCourse(SelectedCourse);
+            if (UserAdoptedSelectedCourse)
             {
-                dataReader.Close();
-                
-                SqlConnection con1 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-                con1.Open();
-                SqlCommand cmd2 = new SqlCommand("UPDATE UserHistoryProgress SET isAudited = 1 WHERE CourseId = " + CourseId + " and UserId = " + UserId, con1);
-                int rowsAffected = cmd2.ExecuteNonQuery();
-                cmd2.Dispose();
-                con1.Close();
-                
-                if (rowsAffected.ToString() == "1")
+                string rowsAffected = ((Student)CurrentUser).auditCourse(SelectedCourse);
+                if (rowsAffected == "1")
                 {
-                    MessageBox.Show("Done");
+                    MessageBox.Show("Updated Successfully");
                 }
                 else
                 {
-                    MessageBox.Show("Error");
+                    MessageBox.Show("Updated Unsuccessfully");
                 }
                 this.Close();
             }
             else
             {
-                dataReader.Close();
-                
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-                con2.Open();
-                SqlCommand cmd3 = new SqlCommand("Insert into UserHistoryProgress(CourseId, UserId, isAudited,isCompleted,Progress) Values("+CourseId+","+UserId+",1,0,'')", con2);
-
-                int rowsAffected = cmd3.ExecuteNonQuery();
-                Console.WriteLine(rowsAffected);
-                int i = rowsAffected;
-                cmd3.Dispose();
-                con2.Close();
-                if(i.ToString() == "1")
+                string rowsAffected = ((Student)CurrentUser).insertAuditEntry(SelectedCourse);
+                if (rowsAffected == "1")
                 {
-                    MessageBox.Show("Done");
+                    MessageBox.Show("Updated Successfully");
                 }
                 else
                 {
-                    MessageBox.Show("Error");
+                    MessageBox.Show("Updated Unsuccessfully");
                 }
                 this.Close();
             }
-
-            cmd.Dispose();
-            con.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -134,24 +104,12 @@ namespace CourseraProject
             //now once we click on buy button we set is audited to false
             button2.Enabled = false;
             button1.Enabled = false;
-
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("SELECT * FROM UserHistoryProgress where CourseId = '" + CourseId + "' and UserId = '" + UserId + "'", con);
-            con.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
-
-            if (dataReader.HasRows)
+            bool UserAdoptedSelectedCourse = ((Student)CurrentUser).hasUserAdoptedSelectedCourse(SelectedCourse);
+            if (UserAdoptedSelectedCourse)
             {
-                dataReader.Close();
                 
-                SqlConnection con1 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-                con1.Open();
-                SqlCommand cmd2 = new SqlCommand("UPDATE UserHistoryProgress SET isAudited = 0,PaymentId = 1 WHERE CourseId = " + CourseId + " and UserId = " + UserId, con1);
-                int rowsAffected = cmd2.ExecuteNonQuery();
-                cmd2.Dispose();
-                con1.Close();
-
-                if (rowsAffected.ToString() == "1")
+                string paymentDone = ((Student)CurrentUser).updatePaymentEntry(SelectedCourse);
+                if (paymentDone == "1")
                 {
                     MessageBox.Show("Done");
                 }
@@ -163,18 +121,9 @@ namespace CourseraProject
             }
             else
             {
-                dataReader.Close();
+                string rowsAffected = ((Student)CurrentUser).insertPaymentEntry(SelectedCourse);
                 
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-                con2.Open();
-                SqlCommand cmd3 = new SqlCommand("Insert into UserHistoryProgress(CourseId, UserId, isAudited,PaymentId,isCompleted,Progress) Values(" + CourseId + "," + UserId + ",0,1,0,0)", con2);
-
-                int rowsAffected = cmd3.ExecuteNonQuery();
-                Console.WriteLine(rowsAffected);
-                int i = rowsAffected;
-                cmd3.Dispose();
-                con2.Close();
-                if (i.ToString() == "1")
+                if (rowsAffected.ToString() == "1")
                 {
                     MessageBox.Show("Done");
                 }
@@ -184,17 +133,12 @@ namespace CourseraProject
                 }
                 this.Close();
             }
-
-            cmd.Dispose();
-            con.Close();
-
-
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            CourseContent cc = new CourseContent(CourseId);
+            CourseContent cc = new CourseContent(CourseId,((Student)CurrentUser).Id);
             cc.Show();
         }
     }

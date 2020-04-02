@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using CourseraProject;
 namespace CourseraProject
 {
     public partial class Login : Form
@@ -18,35 +18,57 @@ namespace CourseraProject
         {
             InitializeComponent();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
-        {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("SELECT * FROM User_Details where Username='"+textBox1.Text+"' and Password = '"+textBox2.Text+"'" , con);
-            con.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
+        {//login as Student button clicked
+
+            User CurrentUser = new Student();
+            CurrentUser.SetUsernamePassword(textBox1.Text,textBox2.Text);
+            bool AuthResult = CurrentUser.AuthenticateUser();
             
-            if (dataReader.HasRows)
+            if (AuthResult)
             {
-                dataReader.Read();
-                UserId = dataReader["Id"].ToString();
+                UserId = CurrentUser.Id;
                 this.Hide();
-                Home h = new Home(UserId);
+                Home h = new Home(CurrentUser);
                 h.Show();
             }
             else
             {
                 label2.Text = "Wrong username/Password";
             }
-            dataReader.Close();
-            cmd.Dispose();
-            con.Close();
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
-        {
-            Register r = new Register();
+        {//register student
+            RegisterStudent r = new RegisterStudent();
             r.Show();
         }
+        
+        private void button3_Click(object sender, EventArgs e)
+        {//Login as tutor
+            User CurrentUser = new Tutor();
+            CurrentUser.SetUsernamePassword(textBox1.Text, textBox2.Text);
+            bool AuthResult = CurrentUser.AuthenticateUser();
+
+            if (AuthResult)
+            {
+                UserId = CurrentUser.Id;
+                this.Hide();
+                TutorSection h = new TutorSection(CurrentUser);
+                h.Show();
+            }
+            else
+            {
+                label2.Text = "Wrong username/Password";
+            }
+        }
+        
+        private void button4_Click(object sender, EventArgs e)
+        {//register tutor
+            TutorRegistration r = new TutorRegistration();
+            r.Show();
+        }
+        
     }
 }
