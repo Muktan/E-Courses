@@ -17,10 +17,11 @@ namespace CourseraProject
         string UserId = "1";
         string CourseId ="";
         string item;
-        public WatchResourse(string fullpath,string type,string CourseId,string item)
+        public WatchResourse(string fullpath,string type,string CourseId,string UserId,string item)
         {
             this.Size = new Size(750,500);
             this.CourseId = CourseId;
+            this.UserId = UserId;
             this.item = item;
             if (type == "VIDEO")
             {
@@ -74,20 +75,10 @@ namespace CourseraProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("SELECT Progress FROM UserHistoryProgress where CourseId = '"+CourseId+"' and UserId = '"+UserId+"'", con);
-            con.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
-            string ProgressSeq = "";
-            while (dataReader.Read())
-            {
-                ProgressSeq += dataReader["Progress"];
-            }
-            ProgressSeq = ProgressSeq.TrimEnd();
+            
+ 
+            string ProgressSeq = Course.getProgressSeq(CourseId, UserId);
             string[] progArr = ProgressSeq.TrimEnd().Split(',');
-            dataReader.Close();
-            cmd.Dispose();
-            con.Close();
             if (!progArr.Contains(item))
             {
 
@@ -99,13 +90,8 @@ namespace CourseraProject
                 {
                     ProgressSeq += "," + item;
                 }
+                int rowsAff = Course.UpdateProgressSeq(ProgressSeq,CourseId,UserId);               
                 
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-                string s = "Update UserHistoryProgress set Progress = '" + ProgressSeq + "' where UserId = '" + UserId + "' and CourseId = '" + CourseId + "'";
-                string str = s;
-                SqlCommand cmd2 = new SqlCommand(str, con);
-                con.Open();
-                int rowsAff = cmd2.ExecuteNonQuery();
                 if (rowsAff == 1)
                 {
                     MessageBox.Show("Done");
@@ -114,8 +100,7 @@ namespace CourseraProject
                 {
                     MessageBox.Show("Not Done");
                 }
-                cmd.Dispose();
-                con.Close();
+                
             }
             else
             {

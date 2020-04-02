@@ -36,7 +36,6 @@
             this.courseranewDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.coursera_newDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.courseranewDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +61,7 @@
             this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(12, 137);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(238, 50);
+            this.button1.Size = new System.Drawing.Size(351, 50);
             this.button1.TabIndex = 1;
             this.button1.Text = "All Courses";
             this.button1.UseVisualStyleBackColor = true;
@@ -92,9 +91,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(256, 137);
+            this.button2.Location = new System.Drawing.Point(369, 137);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(270, 50);
+            this.button2.Size = new System.Drawing.Size(401, 50);
             this.button2.TabIndex = 3;
             this.button2.Text = "Audited Courses";
             this.button2.UseVisualStyleBackColor = true;
@@ -103,24 +102,13 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(532, 137);
+            this.button3.Location = new System.Drawing.Point(776, 137);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(311, 50);
+            this.button3.Size = new System.Drawing.Size(342, 50);
             this.button3.TabIndex = 4;
             this.button3.Text = "Purchased Courses";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(849, 137);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(237, 50);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Tutor Section";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Home
             // 
@@ -128,7 +116,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1130, 565);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listBox1);
@@ -136,7 +123,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Home";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.coursera_newDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.courseranewDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -159,7 +145,6 @@
         private Coursera_newDataSet coursera_newDataSet;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button5;
     }
 }
 

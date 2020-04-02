@@ -59,7 +59,7 @@
             this.label2.Size = new System.Drawing.Size(140, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "> Taught by: ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+
             // 
             // label4
             // 
@@ -150,7 +150,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CourseDescription";
             this.Text = "CourseDescription";
-            this.Load += new System.EventHandler(this.CourseDescription_Load);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 

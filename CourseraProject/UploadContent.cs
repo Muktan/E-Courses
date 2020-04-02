@@ -63,24 +63,10 @@ namespace CourseraProject
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True";
-            string query = "update Courses set CourseSequence='" + dataentry.Substring(0,dataentry.Length-1) + "' where Id='" + Id + "';";
-            SqlConnection con = new SqlConnection(constring);
-            SqlCommand cmd = new SqlCommand(query, con);
-            try
-            {
-                con.Open();
-                int i = cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Your Course is successfully uploaded!\n" +
+            Course.UpdateCourseSequence(dataentry.Substring(0, dataentry.Length - 1),Id);
+            MessageBox.Show("Your Course is successfully uploaded!\n" +
                     "Thank you for using COURSERA!");
-                this.Hide();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            this.Hide();
         }
 
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
@@ -109,10 +95,6 @@ namespace CourseraProject
             string s = op1.FileName;
             if (comboBox1.SelectedIndex == 0)
             {
-                //op1.Filter= "allfiles|*.txt"; 
-                //"D:\\0_Drive_E\\SEM-6\\OOSE\\CourseraProject\\CourseraProject\\Resources\\15\\DOC\\t0_C:\\Users\\lenovo\\Documents\\94.pdf.pdf"
-                //string asd = op1.SafeFileName;
-                
                 string fpath = path + "\\t" + textfile.ToString() + "_" + op1.SafeFileName;
                 File.Copy(s, fpath);
                 dataentry += 't' + textfile.ToString() + ',';
@@ -120,7 +102,6 @@ namespace CourseraProject
             }
             else if (comboBox1.SelectedIndex == 1)
             {
-                //op1.Filter = "allfiles|*.mp4";
                 string fpath = path + "\\v" + videofile.ToString() + "_" + op1.SafeFileName;
                 File.Copy(s, fpath);
                 dataentry += 'v' + videofile.ToString() + ',';

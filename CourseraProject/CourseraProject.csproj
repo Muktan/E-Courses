@@ -65,6 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Course.cs" />
     <Compile Include="CourseContent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,11 +102,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register.cs">
+    <Compile Include="RegisterStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Register.Designer.cs">
-      <DependentUpon>Register.cs</DependentUpon>
+    <Compile Include="RegisterStudent.Designer.cs">
+      <DependentUpon>RegisterStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TutorRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TutorRegistration.Designer.cs">
+      <DependentUpon>TutorRegistration.cs</DependentUpon>
     </Compile>
     <Compile Include="TutorSection.cs">
       <SubType>Form</SubType>
@@ -125,6 +132,7 @@
     <Compile Include="UploadForm.Designer.cs">
       <DependentUpon>UploadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Compile Include="WatchResourse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,8 +160,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Register.resx">
-      <DependentUpon>Register.cs</DependentUpon>
+    <EmbeddedResource Include="RegisterStudent.resx">
+      <DependentUpon>RegisterStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TutorRegistration.resx">
+      <DependentUpon>TutorRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TutorSection.resx">
       <DependentUpon>TutorSection.cs</DependentUpon>

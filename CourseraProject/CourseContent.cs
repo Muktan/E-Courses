@@ -15,25 +15,20 @@ namespace CourseraProject
     public partial class CourseContent : Form
     {
         string UserId = "1";
-        public CourseContent(string CourseId)
+        public CourseContent(string CourseId,string UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("SELECT CourseSequence,Progress FROM Courses,UserHistoryProgress where Courses.Id = '" + CourseId+"' and Courses.Id = CourseId", con);
-            con.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
-            string CourseSeq ="";
-            string ProgressSeq = "";
-            while (dataReader.Read())
-            {
-                CourseSeq += dataReader["CourseSequence"];
-                ProgressSeq += dataReader["Progress"];
-            }
+            
+            string ProgressSeq = Course.getProgressSeq(CourseId, UserId);
+            string CourseSeq = Course.getCourseSeq(CourseId, UserId);
+             
             string[] arr = CourseSeq.TrimEnd().Split(',');
-
             string[] progArr = ProgressSeq.TrimEnd().Split(',');
+
             int CourseLen = arr.Length;
             int ProgLen;
+
             if (ProgressSeq.TrimEnd() == "")
             {
                 ProgLen = 0;
@@ -110,12 +105,12 @@ namespace CourseraProject
                     {
                         if (item.StartsWith("v"))
                         {
-                            WatchResourse wr = new WatchResourse(fullpath + "\\" + str,"VIDEO",CourseId,item);
+                            WatchResourse wr = new WatchResourse(fullpath + "\\" + str,"VIDEO",CourseId,UserId,item);
                             wr.Show();
                         }
                         else
                         {
-                            WatchResourse wr = new WatchResourse(fullpath + "\\" + str, "DOC",CourseId,item);
+                            WatchResourse wr = new WatchResourse(fullpath + "\\" + str, "DOC",CourseId,UserId,item);
                             wr.Show();
                         }
                         
@@ -132,10 +127,6 @@ namespace CourseraProject
                     continue;
                 }
             }
-            dataReader.Close();
-            cmd.Dispose();
-            con.Close();
-
         }
 
     }
