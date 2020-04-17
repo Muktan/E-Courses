@@ -88,6 +88,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Coursera_newDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EditCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCourse.Designer.cs">
+      <DependentUpon>EditCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="FacadeDocumentViewer.cs" />
     <Compile Include="FacadeVideoPlayer.cs" />
     <Compile Include="Home.cs">
@@ -122,6 +128,18 @@
     <Compile Include="TutorSection.Designer.cs">
       <DependentUpon>TutorSection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Update_Content.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Update_Content.Designer.cs">
+      <DependentUpon>Update_Content.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Update_info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Update_info.Designer.cs">
+      <DependentUpon>Update_info.cs</DependentUpon>
+    </Compile>
     <Compile Include="UploadContent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +165,9 @@
     <EmbeddedResource Include="CourseDescription.resx">
       <DependentUpon>CourseDescription.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditCourse.resx">
+      <DependentUpon>EditCourse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TutorSection.resx">
       <DependentUpon>TutorSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Update_Content.resx">
+      <DependentUpon>Update_Content.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Update_info.resx">
+      <DependentUpon>Update_info.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UploadContent.resx">
       <DependentUpon>UploadContent.cs</DependentUpon>

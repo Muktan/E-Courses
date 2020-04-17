@@ -26,5 +26,12 @@ namespace CourseraProject
             UploadForm f2 = new UploadForm();
             f2.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EditCourse ec = new EditCourse();
+            ec.Show();
+
+        }
     }
 }

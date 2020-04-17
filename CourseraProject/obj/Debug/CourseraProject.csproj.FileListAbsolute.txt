@@ -91,3 +91,6 @@ D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\Cour
 D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.Login.resources
 D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.RegisterStudent.resources
 D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.TutorRegistration.resources
+D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.EditCourse.resources
+D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.Update_Content.resources
+D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\obj\Debug\CourseraProject.Update_info.resources
