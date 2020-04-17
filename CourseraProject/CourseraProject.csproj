@@ -88,6 +88,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Coursera_newDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FacadeDocumentViewer.cs" />
+    <Compile Include="FacadeVideoPlayer.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>

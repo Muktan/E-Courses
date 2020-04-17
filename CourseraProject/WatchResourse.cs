@@ -25,48 +25,13 @@ namespace CourseraProject
             this.item = item;
             if (type == "VIDEO")
             {
-               
-                AxWMPLib.AxWindowsMediaPlayer mp = new AxWMPLib.AxWindowsMediaPlayer();
-                
-                ((System.ComponentModel.ISupportInitialize)(mp)).BeginInit();
-                mp.Name = "wmPlayer";
-                mp.Enabled = true;
-                mp.Dock = System.Windows.Forms.DockStyle.None;
-                
-                
-                this.Controls.Add(mp);
-                ((System.ComponentModel.ISupportInitialize)(mp)).EndInit();
 
-                // After initialization you can customize the Media Player
-                //mp.uiMode = "none";
-                mp.Location = new Point(12, 32);
-                mp.Margin = new Padding(12);
-                //776, 426
-                mp.Size = new Size(700,400);
-                mp.URL = fullpath;
-                mp.Ctlcontrols.play();
-                
+                FacadeVideoPlayer.AddPlayerAndPlay(this,fullpath);                
             }
             else
             {
-                AxAcroPDFLib.AxAcroPDF dr = new AxAcroPDFLib.AxAcroPDF();
-                //dr.CreateControl();
-                //dr.LoadFile(fullpath);
-                //dr.src = fullpath;
-                //dr.Location = new Point(12, 12);
-                //dr.Size = new Size(776, 426);
-                //dr.Visible = true;
-                //dr.Show();
-                //this.Controls.Add(dr);
-                ((System.ComponentModel.ISupportInitialize)(dr)).BeginInit();
-                dr.Dock = System.Windows.Forms.DockStyle.None;
-                this.Controls.Add(dr);
-                ((System.ComponentModel.ISupportInitialize)(dr)).EndInit();
-                dr.Width = this.Width;
-                dr.Height = this.Height;
-                dr.Location = new Point(12,42);
-                dr.LoadFile(fullpath);
-                dr.Show();
+                FacadeDocumentViewer.AddDocumentViewerAndView(this,fullpath);
+                
             }
             
             InitializeComponent();

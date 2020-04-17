@@ -21,8 +21,17 @@ namespace CourseraProject
         
         private void button1_Click(object sender, EventArgs e)
         {//login as Student button clicked
-
-            User CurrentUser = new Student();
+            int selected = comboBox1.SelectedIndex;
+            User CurrentUser;
+            if (selected == 0)
+            {
+                CurrentUser = new Student();
+            }
+            else
+            {
+                CurrentUser = new Tutor();
+            }
+            
             CurrentUser.SetUsernamePassword(textBox1.Text,textBox2.Text);
             bool AuthResult = CurrentUser.AuthenticateUser();
             
@@ -30,8 +39,18 @@ namespace CourseraProject
             {
                 UserId = CurrentUser.Id;
                 this.Hide();
-                Home h = new Home(CurrentUser);
-                h.Show();
+                if (selected == 0)
+                {
+                    Home h = new Home(CurrentUser);
+                    h.Show();
+                }
+                else
+                {
+                    TutorSection h = new TutorSection(CurrentUser);
+                    h.Show();
+                }
+                
+                
             }
             else
             {
@@ -41,33 +60,18 @@ namespace CourseraProject
         
         private void button2_Click(object sender, EventArgs e)
         {//register student
-            RegisterStudent r = new RegisterStudent();
-            r.Show();
-        }
-        
-        private void button3_Click(object sender, EventArgs e)
-        {//Login as tutor
-            User CurrentUser = new Tutor();
-            CurrentUser.SetUsernamePassword(textBox1.Text, textBox2.Text);
-            bool AuthResult = CurrentUser.AuthenticateUser();
-
-            if (AuthResult)
+            int selected = comboBox1.SelectedIndex;
+            if (selected == 0)
             {
-                UserId = CurrentUser.Id;
-                this.Hide();
-                TutorSection h = new TutorSection(CurrentUser);
-                h.Show();
+                RegisterStudent r = new RegisterStudent();
+                r.Show();
             }
             else
             {
-                label2.Text = "Wrong username/Password";
+                TutorRegistration r = new TutorRegistration();
+                r.Show();
             }
-        }
-        
-        private void button4_Click(object sender, EventArgs e)
-        {//register tutor
-            TutorRegistration r = new TutorRegistration();
-            r.Show();
+            
         }
         
     }

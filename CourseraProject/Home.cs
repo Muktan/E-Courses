@@ -37,9 +37,8 @@ namespace CourseraProject
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string CourseName = listBox1.Text.TrimEnd();
-            int index = listBox1.SelectedIndex;
             Course SelectedCourse = new Course();
-            SelectedCourse= SelectedCourse.DetailedDescription(index,CourseName);
+            SelectedCourse= SelectedCourse.DetailedDescription(CourseName);
             
             CourseDescription cd = new CourseDescription(CurrentUser,SelectedCourse);
             

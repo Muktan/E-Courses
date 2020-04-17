@@ -227,10 +227,9 @@ cmd1.Dispose();
             con.Close();
             return AuditedCourses;
         }
-        public Course DetailedDescription(int index,string CourseName)
+        public Course DetailedDescription(string CourseName)
         {
-            Course SelectedCourse = Courses.ElementAt<Course>(index);
-
+            Course SelectedCourse = Courses.Where<Course>(x => (x.CourseName.TrimEnd() == CourseName.TrimEnd())).First<Course>();
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True");
             string s = "SELECT Tutor_Name FROM Courses,Course_Tutor,Tutor_Details where CourseName = '" + CourseName + "' and Courses.Id = CourseId and Tutor_Details.Id = TutorId";
 

@@ -85,7 +85,7 @@ namespace CourseraProject
                     FileInfo[] Files;
                     if (item.StartsWith("v"))
                     {
-                        Files = d.GetFiles("*.mp4"); //Getting Text files
+                        Files = d.GetFiles("*.mp4"); 
                     }
                     else
                     {
