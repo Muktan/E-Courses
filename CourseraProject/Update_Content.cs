@@ -38,14 +38,18 @@ namespace CourseraProject
                     if (reader.Read())
                     {
                         dataentry = reader["CourseSequence"].ToString();
+                        dataentry = dataentry.TrimEnd();
                         Console.WriteLine(dataentry);
                     }
                 }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            if (dataentry != "")
+            {
+                dataentry += ",";
             }
             for (int i = 0; i < dataentry.Length; i++)
             {
@@ -61,27 +65,33 @@ namespace CourseraProject
             string path = @"D:\0_Drive_E\SEM-6\OOSE\Github_coursera\E-Courses\CourseraProject\Resources\" + Id.ToString();
             OpenFileDialog op1 = new OpenFileDialog();
             if (comboBox1.SelectedIndex == 0)
+            {
                 op1.Filter = "allfiles|*.pdf";
+                path = path + "\\DOC";
+                Directory.CreateDirectory(path);
+            }
             else if (comboBox1.SelectedIndex == 1)
+            {
                 op1.Filter = "allfiles|*.mp4";
+                path = path + "\\VIDEO";
+                Directory.CreateDirectory(path);
+            }
+
             op1.ShowDialog();
             string s = op1.FileName;
             if (comboBox1.SelectedIndex == 0)
             {
-                //op1.Filter= "allfiles|*.txt"; 
-                File.Copy(s, path + "\\t" + textfile.ToString() + ".pdf");
-                dataentry += "t" + textfile.ToString() + ",";
+                string fpath = path + "\\t" + textfile.ToString() + "_" + op1.SafeFileName;
+                File.Copy(s, fpath);
+                dataentry = dataentry.TrimEnd() + 't' + textfile.ToString() + ',';
                 textfile++;
-                // Console.WriteLine(dataentry+" " +textfile.ToString());
             }
             else if (comboBox1.SelectedIndex == 1)
             {
-                //op1.Filter = "allfiles|*.mp4";
-                File.Copy(s, path + "\\v" + videofile.ToString() + ".mp4");
-                dataentry += "v" + videofile.ToString() + ",";
+                string fpath = path + "\\v" + videofile.ToString() + "_" + op1.SafeFileName;
+                File.Copy(s, fpath);
+                dataentry = dataentry.TrimEnd() + 'v' + videofile.ToString() + ',';
                 videofile++;
-
-                //Console.WriteLine(dataentry + " " + videofile.ToString());
             }
         }
 
@@ -89,7 +99,7 @@ namespace CourseraProject
         {
             string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coursera.mdf;Initial Catalog=CourseraNew;Integrated Security=True";
             Console.WriteLine(dataentry);
-            string query = "update Courses set CourseSequence='" + dataentry + "' where Id='" + Id + "';";
+            string query = "update Courses set CourseSequence='" + dataentry.TrimEnd().Substring(0, dataentry.Length - 1) + "' where Id='" + Id + "';";
             SqlConnection con = new SqlConnection(constring);
             SqlCommand cmd = new SqlCommand(query, con);
             try

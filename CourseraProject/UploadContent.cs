@@ -39,14 +39,14 @@ namespace CourseraProject
             {
                 //op1.Filter= "allfiles|*.txt"; 
                 File.Copy(s, path + "\\DOC\\t" + textfile.ToString() + "_"+op1.FileName+".pdf");
-                dataentry += 't' + textfile.ToString() + ',';
+                dataentry = dataentry.TrimEnd()+'t' + textfile.ToString() + ',';
                 textfile++;
             }
             else if (comboBox1.SelectedIndex == 1)
             {
                 //op1.Filter = "allfiles|*.mp4";
                 File.Copy(s, path + "\\VIDEO\\v" + videofile.ToString() +"_" + op1.FileName + ".mp4");
-                dataentry += 'v' + videofile.ToString() + ',';
+                dataentry = dataentry.TrimEnd()+'v' + videofile.ToString() + ',';
                 videofile++;
             }
         }
@@ -97,14 +97,14 @@ namespace CourseraProject
             {
                 string fpath = path + "\\t" + textfile.ToString() + "_" + op1.SafeFileName;
                 File.Copy(s, fpath);
-                dataentry += 't' + textfile.ToString() + ',';
+                dataentry = dataentry.TrimEnd() + 't' + textfile.ToString() + ',';
                 textfile++;
             }
             else if (comboBox1.SelectedIndex == 1)
             {
                 string fpath = path + "\\v" + videofile.ToString() + "_" + op1.SafeFileName;
                 File.Copy(s, fpath);
-                dataentry += 'v' + videofile.ToString() + ',';
+                dataentry = dataentry.TrimEnd()+ 'v' + videofile.ToString() + ',';
                 videofile++;
             }
         }

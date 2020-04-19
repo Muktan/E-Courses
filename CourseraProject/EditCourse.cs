@@ -62,7 +62,7 @@ namespace CourseraProject
         {
             int selectedIndex = comboBox1.SelectedIndex;
             MessageBox.Show(selectedIndex.ToString());
-            Update_info u = new Update_info(selectedIndex);
+            Update_info u = new Update_info(selectedIndex+1);
             
             u.Show();
         }

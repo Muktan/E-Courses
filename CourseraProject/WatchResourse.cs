@@ -53,7 +53,7 @@ namespace CourseraProject
                 }
                 else
                 {
-                    ProgressSeq += "," + item;
+                    ProgressSeq = ProgressSeq.TrimEnd()+"," + item;
                 }
                 int rowsAff = Course.UpdateProgressSeq(ProgressSeq,CourseId,UserId);               
                 
