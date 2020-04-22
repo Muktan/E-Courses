@@ -26,10 +26,10 @@ namespace CourseraProject
             this.CourseId = SelectedCourse.Id.ToString();
             label1.Text = SelectedCourse.CourseName;
             SelectedCourseName = SelectedCourse.CourseName;
-            label2.Text += SelectedCourse.Tutors;
-            label3.Text += SelectedCourse.CourseDescription;
-            label4.Text += SelectedCourse.OfferedBy;
-            label5.Text += SelectedCourse.Rating;
+            label2.Text += "Muktan";
+            label3.Text += "DDU";
+            label4.Text += SelectedCourse.CourseDescription;
+            label5.Text += "4.4";
             label6.Text += SelectedCourse.Price;
             this.CurrentUser = CurrentUser;
             this.SelectedCourse = SelectedCourse;

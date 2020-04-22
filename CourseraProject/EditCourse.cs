@@ -24,7 +24,7 @@ namespace CourseraProject
             while (dataReader.Read())
             {
                 string s = dataReader["CourseName"].ToString();
-                comboBox1.Items.Add(s);
+                comboBox1.Items.Add(s.TrimEnd());
             }
             dataReader.Close();
             cmd.Dispose();
@@ -61,7 +61,7 @@ namespace CourseraProject
         private void button2_Click(object sender, EventArgs e)
         {
             int selectedIndex = comboBox1.SelectedIndex;
-            MessageBox.Show(selectedIndex.ToString());
+            
             Update_info u = new Update_info(selectedIndex+1);
             
             u.Show();

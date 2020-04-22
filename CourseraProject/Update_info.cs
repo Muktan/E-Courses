@@ -29,11 +29,11 @@ namespace CourseraProject
                 {
                     if (reader.Read())
                     {
-                        textBox1.Text = reader["CourseName"].ToString();
-                        textBox2.Text = reader["CourseDescription"].ToString();
-                        textBox3.Text = reader["Price"].ToString();
-                        int orgId = int.Parse(reader["OrganisationId"].ToString());
-                        string query = "select * from Organization where Id=" + orgId.ToString() + ";";
+                        textBox1.Text = reader["CourseName"].ToString().TrimEnd();
+                        textBox2.Text = reader["CourseDescription"].ToString().TrimEnd();
+                        textBox3.Text = reader["Price"].ToString().TrimEnd();
+                        int orgId = int.Parse(reader["OrganisationId"].ToString().TrimEnd());
+                        string query = "select * from Organization where Id=" + orgId.ToString().TrimEnd() + ";";
                         SqlConnection con1 = new SqlConnection(constring);
                         SqlCommand cmd = new SqlCommand(query, con1);
                         con1.Open();
